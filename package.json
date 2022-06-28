@@ -1,0 +1,93 @@
+{
+  "publisher": "wuwe1",
+  "name": "tsl-vscode",
+  "displayName": "TSL vscode extension",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@7.0.1",
+  "description": "",
+  "author": "wuwe1 <wu_we1@outlook.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/wuwe1/tsl-vscode#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wuwe1/tsl-vscode"
+  },
+  "bugs": {
+    "url": "https://github.com/wuwe1/tsl-vscode/issues"
+  },
+  "keywords": [
+    "tsl"
+  ],
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "main": "./dist/index.js",
+  "icon": "res/icon.png",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "vscode": "^1.68.0"
+  },
+  "activationEvents": [
+    "onLanguage:tsl"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "tsl",
+        "extensions": [".tsl"]
+      }
+    ],
+    "snippets": [
+      {
+        "language": "tsl",
+        "path": "./snippets/tsl.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "tsl",
+        "scopeName": "source.tsl",
+        "path": "./syntaxes/tmGrammar.json"
+
+      }
+    ],
+    "commands": [
+      {
+        "command": "extension.helloWorld",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --external vscode",
+    "dev": "nr build --watch",
+    "lint": "eslint .",
+    "vscode:prepublish": "nr build",
+    "publish": "vsce publish --no-dependencies",
+    "pack": "vsce package --no-dependencies",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp --commit --push --tag && nr publish"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.25.1",
+    "@antfu/ni": "^0.16.2",
+    "@babel/types": "^7.18.4",
+    "@types/node": "^17.0.41",
+    "@types/vscode": "^1.68.0",
+    "bumpp": "^7.1.1",
+    "eslint": "^8.17.0",
+    "esno": "^0.16.3",
+    "pnpm": "^7.1.9",
+    "rimraf": "^3.0.2",
+    "tsup": "^6.1.0",
+    "typescript": "^4.7.3",
+    "vite": "^2.9.11",
+    "vitest": "^0.14.1",
+    "vsce": "^2.9.1"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "always": {
+    "prefix": [
+      "alw"
+    ],
+    "body": [
+      "always assume {",
+      "  $1",
+      "}",
+      "always guarantee {",
+      "  $2",
+      "}"
+    ]
+  }
+}

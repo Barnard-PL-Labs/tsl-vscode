@@ -24,7 +24,6 @@
     "Snippets"
   ],
   "main": "./dist/index.js",
-  "icon": "res/icon.png",
   "files": [
     "dist"
   ],

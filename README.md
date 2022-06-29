@@ -2,6 +2,10 @@
 
 <a href="https://marketplace.visualstudio.com/items?itemName=wuwe1.tsl-vscode" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/v/wuwe1.tsl-vscode.svg?color=eee&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a>
 
+for [TSL, Temporal Stream Logic.](https://arxiv.org/abs/1712.00246)
+
+![](https://user-images.githubusercontent.com/22995158/176379884-0be05558-1ae7-4a37-94be-8a9f2fd07a40.png)
+
 - [x] Syntax highlight
 - [x] Snippets
 - [ ] Command

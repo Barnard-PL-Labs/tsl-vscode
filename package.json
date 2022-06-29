@@ -38,7 +38,8 @@
     "languages": [
       {
         "id": "tsl",
-        "extensions": [".tsl"]
+        "extensions": [".tsl"],
+        "configuration": "./language-configuration.json"
       }
     ],
     "snippets": [

@@ -1,3 +1,49 @@
 {
-
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "scopeName": "source.tsl",
+  "name": "tsl",
+  "patterns": [
+    { "include": "#keyword" },
+    { "include": "#constant" },
+    { "include": "#punctuation" },
+    { "include": "#operator" },
+    { "include": "#operator-logic" },
+    { "include": "#operator-imply" },
+    { "include": "#operator-iff" },
+    { "include": "#operator-pred" }
+  ],
+  "repository": {
+    "keyword": {
+      "match": "always|assume|guarantee",
+      "name": "keyword.control"
+    },
+    "constant": {
+      "match": "[_a-zA-Z][_a-zA-Z0-9]*\\(\\)",
+      "name": "constant"
+    },
+    "operator": {
+      "match": "\\b(G|F|R|W|X|U)\\b",
+      "name": "keyword.operator"
+    },
+    "operator-logic": {
+      "match": "(\\&\\&|\\|\\||\\!)",
+      "name": "keyword.operator.logic"
+    },
+    "operator-imply": {
+      "match": "\\->",
+      "name": "keyword.operator.imply"
+    },
+    "operator-iff": {
+      "match": "\\<->",
+      "name": "keyword.operator.iff"
+    },
+    "operator-pred": {
+      "match": "\\<-",
+      "name": "keyword.operator.pred"
+    },
+    "punctuation": {
+      "match": ";",
+      "name": "punctuation.terminator.seperator"
+    }
+  }
 }

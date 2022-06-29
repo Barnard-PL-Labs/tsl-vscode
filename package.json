@@ -58,8 +58,8 @@
     ],
     "commands": [
       {
-        "command": "extension.helloWorld",
-        "title": "Hello World"
+        "command": "extension.tsl-vscode.synth",
+        "title": "TSL: Synthesize"
       }
     ]
   },

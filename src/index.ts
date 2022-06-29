@@ -1,5 +1,5 @@
 import { spawn } from 'child_process'
-import { existsSync, fstat, mkdirSync, writeFileSync } from 'fs'
+import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import path from 'path'
 import { commands, window, workspace } from 'vscode'
 

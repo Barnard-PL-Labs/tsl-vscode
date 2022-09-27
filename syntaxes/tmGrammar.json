@@ -14,7 +14,7 @@
   ],
   "repository": {
     "keyword": {
-      "match": "always|assume|guarantee",
+      "match": "always|assume|guarantee|operator|formula",
       "name": "keyword.control"
     },
     "constant": {

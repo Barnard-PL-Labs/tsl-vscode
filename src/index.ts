@@ -1,6 +1,7 @@
 import { spawn } from 'child_process'
 import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import path from 'path'
+import { isContext } from 'vm'
 import { commands, window, workspace } from 'vscode'
 
 export enum CommandKeys {
@@ -50,6 +51,78 @@ export function activate() {
       }
     })
   })
+
+  const vscode = require('vscode')
+
+  vscode.languages.registerHoverProvider('tsl', {
+    provideHover(document, position, token) {
+
+        const range = document.getWordRangeAtPosition(position);
+        const word = document.getText(range);
+        
+        if (word == "G") {
+            return new vscode.Hover({
+                language: "tsl",
+                value: "operator: always \nusage: G formula"
+            });
+        }
+        else if (word == "F") {
+          return new vscode.Hover({
+            language: "tsl",
+            value: "operator: eventually \nusage: F formula"
+        });
+        }
+        else if (word == "U") {
+          return new vscode.Hover({
+            language: "tsl",
+            value: "operator: until \nusage: formula U formula"
+        });
+        }
+        else if (word == "X") {
+          return new vscode.Hover({
+            language: "tsl",
+            value: "operator: next \nusage: X formula"
+        });
+        }
+        else if (word == "->") {
+          return new vscode.Hover({
+            language: "tsl",
+            value: "operator: implies \nusage: formula -> formula"
+        });
+        }
+        else if (word == "<->") {
+          return new vscode.Hover({
+            language: "tsl",
+            value: "operator: iff \nusage: formula <-> formula"
+        });
+        }
+        else if (word == "&&") {
+          return new vscode.Hover({
+            language: "tsl",
+            value: "operator: and \nusage: formula && formula"
+        });
+        }
+        else if (word == "||") {
+          return new vscode.Hover({
+            language: "tsl",
+            value: "operator: or \nusage: formula || formula"
+        });
+        }
+        else if (word == "!") {
+          return new vscode.Hover({
+            language: "tsl",
+            value: "operator: not \nusage: ! formula"
+        });
+        }
+        else if (word == "[ <- ]") {
+          return new vscode.Hover({
+            language: "tsl",
+            value: "formula: update \nusage: [fxn <- fxnTerm] || [outSignal <- inSignal]"
+        });
+        }
+    }
+});
+
 }
 
 export function deactivate() {

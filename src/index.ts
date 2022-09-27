@@ -114,7 +114,7 @@ export function activate() {
             value: "operator: not \nusage: ! formula"
         });
         }
-        else if (word == "[ <- ]") {
+        else if (word == "<-") {
           return new vscode.Hover({
             language: "tsl",
             value: "formula: update \nusage: [fxn <- fxnTerm] || [outSignal <- inSignal]"

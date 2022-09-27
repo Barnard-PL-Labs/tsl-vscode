@@ -11,5 +11,14 @@
       "  $2",
       "}"
     ]
+  },
+  "update": {
+    "prefix": [
+      "["
+    ],
+    "body": [
+      "[${1:outSignal} <- ${2:fxnTerm}]"
+    ],
+    "description": "update"
   }
 }

@@ -5,10 +5,10 @@
     ],
     "body": [
       "always assume {",
-      "  $1",
+      "    ",
       "}",
       "always guarantee {",
-      "  $2",
+      "    ",
       "}"
     ]
   },
@@ -17,8 +17,89 @@
       "["
     ],
     "body": [
-      "[${1:outSignal} <- ${2:fxnTerm}]"
+      "[${1:outSignal} <- ${2:fxnTerm}] "
     ],
     "description": "update"
+  },
+  "alwaysOperator": {
+    "prefix": [
+      "alwaysOperator"
+    ],
+    "body": [
+      "G "
+    ],
+    "description": "the always operator"
+  },
+  "eventuallyOperator": {
+    "prefix": [
+      "eventuallyOperator"
+    ],
+    "body": [
+      "F "
+    ],
+    "description": "the eventually operator"
+  },
+  "untilOperator": {
+    "prefix": [
+      "untilOperator"
+    ],
+    "body": [
+      "U "
+    ],
+    "description": "the until operator"
+  },
+  "nextOperator": {
+    "prefix": [
+      "nextOperator"
+    ],
+    "body": [
+      "X "
+    ],
+    "description": "the next operator"
+  },
+  "implies": {
+    "prefix": [
+      "implies"
+    ],
+    "body": [
+      " -> "
+    ],
+    "description": "implies"
+  },
+  "iff": {
+    "prefix": [
+      "iff"
+    ],
+    "body": [
+      " <-> "
+    ],
+    "description": "if and only iff"
+  },
+  "and": {
+    "prefix": [
+      "and"
+    ],
+    "body": [
+      "&& "
+    ],
+    "description": "and"
+  },
+  "or": {
+    "prefix": [
+      "or"
+    ],
+    "body": [
+      "|| "
+    ],
+    "description": "or"
+  },
+  "not": {
+    "prefix": [
+      "not"
+    ],
+    "body": [
+      "! "
+    ],
+    "description": "not"
   }
 }

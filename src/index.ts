@@ -1,8 +1,10 @@
-import { spawn } from 'child_process'
 import * as vscode from 'vscode'
 import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import path from 'path'
 import { commands, window, workspace } from 'vscode'
+import { readFileSync, promises as fsPromises } from 'fs';
+import { join } from 'path';
+import fetch from 'node-fetch';
 
 export const TEST_MENTION = 'update_mention';
 const open = '[';
@@ -33,26 +35,29 @@ export function activate(context: vscode.ExtensionContext) {
     }
     const fileName = editor?.document.fileName
 
-    if (!editor.document.fileName.endsWith('.tsl'))
+    if (!(editor.document.fileName.endsWith('.tsl')))
       window.showInformationMessage('Current file is not a TSL file')
 
     window.showQuickPick(synthOptions).then((option) => {
       if (option) {
         const root = workspace.getWorkspaceFolder(editor.document.uri)
-        if (!root)
+        if (!root){
           return
-
+        }
         const out = path.join(root?.uri.fsPath, 'out')
         if (!existsSync(out))
           mkdirSync(out)
 
-        const dir = path.dirname(fileName)
-        const tslsynth = spawn(`tslsynth ${fileName} --${option}`, { cwd: dir })
-        tslsynth.stdout.on('data', (data) => {
-          writeFileSync(path.join(
-            out, `${path.basename(fileName, '.tsl')}.${option}`,
-          ), data)
-        })
+        const tslSpec = readFileSync(`${fileName}`, `utf-8`);
+        fetch(`https://graphviz-web-vvxsiayuzq-ue.a.run.app/tslsynth?tsl=`+tslSpec+`&target=`+option)
+          .then(response => {
+            response.text().then(function(text) {
+              writeFileSync(path.join(
+                out, `${path.basename(fileName, "tsl")}${option}`,
+              ), text)
+            })
+          })
+          .catch(error => console.error(error));
       }
     })
   })
@@ -178,17 +183,21 @@ export function refreshDiagnostics(doc: vscode.TextDocument, testDiagnostics: vs
     if (lineOfText.text.includes('assume')){
       for(let newLine = lineIndex; newLine < doc.lineCount; newLine++){
         const newLineText = doc.lineAt(newLine);
-        if (newLineText.text.includes(open) && newLineText.text.includes(close)) {
-           diagnostics.push(createDiagnostic(doc, newLineText, newLine));
+        if(newLineText.text.includes('->')){
+          if (newLineText.text.includes(open) && newLineText.text.includes(close)) {
+            diagnostics.push(createDiagnostic(doc, newLineText, newLine));
+          }
+          else if(newLineText.text.includes("guarantee")){
+            break;
+          }
         }
         else if(newLineText.text.includes("guarantee")){
-          break
+          break;
         }
       }
     }
     else{break}
-	}
-
+  }
 	testDiagnostics.set(doc.uri, diagnostics);
 }
 
